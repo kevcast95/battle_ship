@@ -1,15 +1,47 @@
 
 document.addEventListener("dragstart", (e) => letDrag(e))
+document.addEventListener("dragend", (ev) => dragEnd(ev), false)
+const mySection = document.getElementById("my-section")
+mySection.addEventListener("dragenter", (ev) => dragEnter(ev), false)
+mySection.addEventListener("dragleave", (ev) => dragLeave(ev), false)
+
 
 /**
  * The function is called when the user starts dragging a ship. It sets the data to be transferred to
  * the id of the ship being dragged.
- * @param event - The event object is a standard JavaScript object that contains information about the
+ * @param ev - The event object is a standard JavaScript object that contains information about the
  * event that occurred.
  */
-function letDrag(event) {
-  event.dataTransfer.setData("ship", event.target.id)
+function letDrag(ev) {
+  ev.dataTransfer.setData("ship", ev.target.id)
+  ev.target.style.opacity = 0;
+}
 
+/**
+ * When the drag ends, make the element visible again
+ * @param ev - The event object.
+ */
+function dragEnd(ev) {
+  ev.target.style.opacity = "1";
+}
+/**
+ * When the user drags an element over a square, the square's background color changes to a light blue
+ * @param ev - The event object.
+ */
+ function dragEnter(ev) {
+  if ( ev.target.className === "square") {
+    ev.target.style.background = "rgba(66, 157, 227, 0.634)";
+  }
+}
+
+/**
+ * If the target of the dragLeave event is a square, then remove the background color
+ * @param ev - the event object
+ */
+function dragLeave(ev) {
+  if ( ev.target.className === "square") {
+  ev.target.style.background = "";
+  }
 }
 
 /**
@@ -33,9 +65,22 @@ export function drop(ev) {
   let ship = document.getElementById(data)
   ship.classList.add("absolute")
   ev.target.appendChild(document.getElementById(data))
+  if ( ev.target.className === "square") {
+    ev.target.style.background = "";
+  }
+  setShipPoints(ship, ev)
   hideShipSection()
 }
 
+function setShipPoints(ship, data) {
+  console.log("shipo__", ship, data.target.id);
+  const shipId = ship.id 
+  localStorage.setItem(`${shipId}`, shipId)
+}
+
+/**
+ * If the ships section has no children, remove the ships section and center the attack section
+ */
 function hideShipSection() {
   const section = document.getElementById('main-ships-section')
   if (section.children.length === 0) {

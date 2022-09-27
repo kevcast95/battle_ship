@@ -22,34 +22,27 @@ function setBattleField() {
   my.addEventListener('drop', (e) => drop(e))
   my.addEventListener('dragover', (e) => allowDrop(e))
 };
-document.addEventListener("dragover", function(event) {
-  event.preventDefault();
-});
 
 /**
- * It takes a string as an argument, and if the string is not equal to 'enemy-section', it pushes the
- * string to the points array, and then it gets the element with the id equal to the string, and if the
+ * It takes a string as an argument, and if the string is not equal to 'enemy-section', 
+ * it gets the element with the id equal to the string, and if the
  * shipsPosition array includes the substring of the id of the element, it adds the class
  * 'shotted-done' to the element, and sets the innerText of the element to '√', and if the
  * shipsPosition array does not include the substring of the id of the element, it adds the class
  * 'shotted-failed' to the element, and sets the innerText of the element to 'X'.
  * @param point - the id of the target that was clicked
  * @returns undefined.
- */
-const points = [];
+ */          
 function shotTarget(point) {
   if (point === 'enemy-section') {
     return
   }
-  points.push(point);
   const targetShotted = document.getElementById(point);
   if (shipsPosition.includes(targetShotted.id.substring(3,7))) {
-    targetShotted.classList.add('shotted-done');
     setMissile(targetShotted, true)
     return
   }
   setMissile(targetShotted, false)
-  targetShotted.classList.add('shotted-failed');
 };
 
 /**
@@ -71,6 +64,12 @@ function createSqares(id,xAxis,i,j) {
   return squareBtn;
 }
 
+/**
+ * It creates an image element, sets its class and src, appends it to the targetShotted element, and
+ * then removes it after 500ms
+ * @param targetShotted - the target that was shot
+ * @param succes - boolean
+ */
 function setMissile(targetShotted, succes) {
   const img = document.createElement('img')
   const boom = document.createElement('img')
@@ -81,9 +80,13 @@ function setMissile(targetShotted, succes) {
   targetShotted.disabled = true
   targetShotted.append(img)
   setTimeout(()=> {
-    if(succes) targetShotted.append(boom)
     targetShotted.removeChild(img)
-  }, 500)
+    if(succes) {
+      targetShotted.append(boom)
+    } else {
+      targetShotted.classList.add('shotted-failed');
+    }
+  }, 300)
 }
 
 

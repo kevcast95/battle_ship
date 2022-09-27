@@ -78,12 +78,8 @@ body {
   cursor: pointer;
 }
 
-.shotted-done {
-  color: green;
-}
-
 .shotted-failed {
-  background-color: rgb(138, 133, 133);
+  background-color: rgba(188, 187, 187, 0.822);
 }
 
 .main-ships-boats {
@@ -134,8 +130,7 @@ body {
   width: 35px;
   height: 35px;
   position: absolute;
-  animation: falling .5s linear;
-  animation-timing-function: ease-out;
+  animation: falling .4s linear;
 }
 
 .boom {
