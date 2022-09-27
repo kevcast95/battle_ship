@@ -35,9 +35,6 @@ body {
   align-items: center;
   padding: 10px;
 }
-.test {
-  stroke: black;
-}
 
 .main-attack-section {
   width: 70%;
@@ -75,19 +72,18 @@ body {
   width: 10%;
   height: 10%;
   position: relative;
+  background-color: transparent;
   border: solid 1px black;
   color: black;
   cursor: pointer;
 }
 
 .shotted-done {
-  border: solid 2px green;
   color: green;
 }
 
 .shotted-failed {
-  border: solid 2px red;
-  color: red;
+  background-color: rgb(138, 133, 133);
 }
 
 .main-ships-boats {
@@ -130,7 +126,7 @@ body {
   transform-origin: top left;
 }
 
-.node {
+.none {
   display: none;
 }
 
@@ -142,11 +138,18 @@ body {
   animation-timing-function: ease-out;
 }
 
+.boom {
+  width: 35px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 @keyframes falling {
   from {
-    top: -10px;
+    top: -50px;
   }
   to {
-    top: 3px;
+    top: -15px;
   }
 }

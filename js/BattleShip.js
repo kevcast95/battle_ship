@@ -43,19 +43,13 @@ function shotTarget(point) {
   }
   points.push(point);
   const targetShotted = document.getElementById(point);
-  const img = document.createElement('img')
-  img.classList.add("fall-missile", "absolute")
-  img.src = "../assets/missile.png"
-  targetShotted.appendChild(img)
-  setTimeout(()=> {
-    targetShotted.removeChild(img)
-  }, 500)
   if (shipsPosition.includes(targetShotted.id.substring(3,7))) {
     targetShotted.classList.add('shotted-done');
+    setMissile(targetShotted, true)
     return
   }
+  setMissile(targetShotted, false)
   targetShotted.classList.add('shotted-failed');
-  targetShotted.innerText = 'X';
 };
 
 /**
@@ -69,12 +63,27 @@ function shotTarget(point) {
  * tagId.
  */
 function createSqares(id,xAxis,i,j) {
-  const squareDiv = document.createElement("div");
+  const squareBtn = document.createElement("button");
   const tagId =  `${id}-${xAxis[i]},${j+1}`
-  squareDiv.classList.add('square');
-  squareDiv.innerText = `${xAxis[i]},${j+1}`;
-  squareDiv.id = tagId;
-  return squareDiv;
+  squareBtn.classList.add('square');
+  squareBtn.innerText = `${xAxis[i]},${j+1}`;
+  squareBtn.id = tagId;
+  return squareBtn;
+}
+
+function setMissile(targetShotted, succes) {
+  const img = document.createElement('img')
+  const boom = document.createElement('img')
+  img.classList.add("fall-missile", "absolute")
+  boom.classList.add("boom", "absolute")
+  img.src = "../assets/missile.png"
+  boom.src = "../assets/boom1.gif"
+  targetShotted.disabled = true
+  targetShotted.append(img)
+  setTimeout(()=> {
+    if(succes) targetShotted.append(boom)
+    targetShotted.removeChild(img)
+  }, 500)
 }
 
 
