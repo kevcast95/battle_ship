@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lucaburgio/iconoir@main/css/iconoir.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <title>Batalla Naval</title>
+</head>
+
+<body>
+  <main class="main_contenedor">
+    <h1>Batalla Naval</h1>
+    <i class="iconoir-rocket"></i>
+    <section class="main-section">
+      <div class="main-attack-section" id="main-attack-section">
+        <div class="main-enemy-section" id="enemy-section">
+
+        </div>
+        <div class="main-my-section" id="my-section">
+
+        </div>
+      </div>
+      <div class="main-ships-section" id="main-ships-section">
+        <img draggable="true" class="main-ships-boats small-boat" src="./assets/ship1.png" alt="draggable_ship1" id="ship1">
+        <img draggable="true" class="main-ships-boats mid-boat" src="./assets/ship1.png" alt="draggable_ship2" id="ship2">
+        <img draggable="true" class="main-ships-boats mid-boat" src="./assets/ship4.png" alt="draggable_ship3" id="ship3">
+        <img draggable="true" class="main-ships-boats long-boat" src="./assets/ship4.png" alt="draggable_ship4" id="ship4">
+        <img draggable="true" class="main-ships-boats longest-boat" src="./assets/ship5.png" alt="draggable_ship5" id="ship5">
+      </div>
+    </section>
+  </main>
+  <script type="module" src="./js/BattleShip.js"></script>
+  <script type="module" src="./js/DragNDrop.js"></script>
+</body>
+
+</html>
