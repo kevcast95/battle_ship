@@ -1,5 +1,6 @@
-const shipsPosition = ['b,2', 'b,3', 'b,4', 'a,6', 'a,5', 'a,7', 'a,10', 'b,10', 'c,10', 'd,10', 'e,10'];
+const shipsPosition = ['2,2', '2,3', '2,4', '1,6', '1,5', '1,7', '1,10', '2,10', '3,10', '4,10', '5,10'];
 import  { allowDrop, drop }  from "./DragNDrop.js";
+import { xAxis } from "./constants.js";
 
 /**
  * It creates a 10x10 grid of squares and appends them to the DOM
@@ -7,9 +8,9 @@ import  { allowDrop, drop }  from "./DragNDrop.js";
 function setBattleField() {
   const enemy = document.getElementById('enemy-section');
   const my = document.getElementById('my-section');
+  console.log(".getAttributeNames();", my.getBoundingClientRect());
   const enemySquares = [];
   const mySquares = [];
-  const xAxis = ['a','b','c','d','e','f','g','h','i','j']
   for (let i = 0; i < xAxis.length; i++) {
     for (let j = 0; j < xAxis.length; j++) {
       enemySquares.push(createSqares('en',xAxis,i,j));
@@ -57,7 +58,7 @@ function shotTarget(point) {
  */
 function createSqares(id,xAxis,i,j) {
   const squareBtn = document.createElement("button");
-  const tagId =  `${id}-${xAxis[i]},${j+1}`
+  const tagId =  `${id}-${i+1},${j+1}`
   squareBtn.classList.add('square');
   squareBtn.innerText = `${xAxis[i]},${j+1}`;
   squareBtn.id = tagId;
