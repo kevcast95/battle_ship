@@ -2,17 +2,35 @@ import { shipsObjs } from "./constants.js";
 
 /* FUNCTIONS CALLED BY DRAGNDROP MODULE */
 
+/* The Ships class is a container for the ships array */
+class Ships {
+  constructor() {
+    this.ships = shipsObjs;
+  }
+  getShips() {
+    return this.ships
+  }
+  updatePosition(ship) {
+    const shipName = ship.name;
+    this.ships.forEach(shp => {
+      if (shp.name === shipName) {
+        shp.pointsPosition = ship.pointsPosition
+      }
+    })
+  }
+}
+
+export const shipsList = new Ships();
+
 /* It's a class that stores points and ships */
 class SettinPoint {
   constructor() {
     this.lengthP = 0;
-    this.lengthS = 0;
     this.arr = {};
-    this.ships = [];
   }
 
   addPoints(ship, item) {
-    this.push(ship, item)
+    this.push(ship, item);
   }
 
   push(key, item) {
@@ -33,7 +51,7 @@ class SettinPoint {
   }
 
 }
-export const selectedPoints = new SettinPoint()
+export const selectedPoints = new SettinPoint();
 
 
 /**
@@ -57,7 +75,7 @@ export function setShipPoints(ship, data) {
   /*  const starSquare = document.getElementById(data.target.id)
    console.log("starSquare",starSquare.getBoundingClientRect()); */
   const ponintArr = createPointsArray(ship, data.target.id);
-  localStorage.setItem(`${ship}`, JSON.stringify(ponintArr))
+  shipsList.updatePosition(ponintArr);
 }
 
 /**
@@ -67,7 +85,7 @@ export function setShipPoints(ship, data) {
  * @returns An object with the name, size, direction, and pointsPosition properties.
  */
 function createPointsArray(ship, start) {
-  const currentShip = shipsObjs.filter(cShip => cShip.name === ship);
+  const currentShip = shipsList.getShips().filter(cShip => cShip.name === ship);
   const coord1 = parseInt(start.substring(3, 4));
   const coord2 = parseInt(start.substring(5, 7));
   const points = [];
