@@ -15,7 +15,7 @@ export const shipsObjs = [
     },
     {
         name: "ship3",
-        size: 4,
+        size: 3,
         pointsPosition: [1,1],
         direction: "vertical",
     },
