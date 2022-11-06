@@ -2,7 +2,8 @@ import { shipsObjs } from "./constants.js";
 
 /* FUNCTIONS CALLED BY DRAGNDROP MODULE */
 
-/* The Ships class is a container for the ships array */
+/* The Ships class is a class that holds all the ships objects and has methods to get the ships and
+update the ships position */
 class Ships {
   constructor() {
     this.ships = shipsObjs;
@@ -72,8 +73,8 @@ export function validateTarget(ev) {
  * @param data - {
  */
 export function setShipPoints(ship, data) {
-  /*  const starSquare = document.getElementById(data.target.id)
-   console.log("starSquare",starSquare.getBoundingClientRect()); */
+  const starSquare = document.getElementById(data.target.id)
+  console.log("starSquare",starSquare.getBoundingClientRect());
   const ponintArr = createPointsArray(ship, data.target.id);
   shipsList.updatePosition(ponintArr);
 }

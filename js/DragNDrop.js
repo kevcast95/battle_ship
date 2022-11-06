@@ -20,7 +20,6 @@ function letDrag(ev) {
   if (droppedShip.includes(dragShip)) {
     selectedPoints.pop(dragShip)
   }
-  console.log("selectedPoints:", selectedPoints.getPoints());
   ev.dataTransfer.setData("ship", ev.target.id)
   ev.target.style.opacity = 0;
 }

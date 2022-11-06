@@ -1,5 +1,6 @@
 const shipsPosition = ['2,2', '2,3', '2,4', '1,6', '1,5', '1,7', '1,10', '2,10', '3,10', '4,10', '5,10'];
 import  { allowDrop, drop }  from "./DragNDrop.js";
+import { showRotateBtns, hideRotateBtns } from "./Rotations.js";
 import { xAxis } from "./constants.js";
 
 /**
@@ -22,6 +23,8 @@ function setBattleField() {
   enemy.addEventListener('click', ({target}) => shotTarget(target.id))
   my.addEventListener('drop', (e) => drop(e))
   my.addEventListener('dragover', (e) => allowDrop(e))
+  my.addEventListener('mouseover', (e) => showRotateBtns(e))
+  my.addEventListener('mouseleave', (e) => hideRotateBtns(e))
 };
 
 /**
